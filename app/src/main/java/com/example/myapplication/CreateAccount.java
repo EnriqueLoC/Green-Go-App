@@ -36,7 +36,7 @@ public class CreateAccount extends AppCompatActivity {
                 } else if (edtPass.getText().toString().equals(edtConfPass.getText().toString())) {
                     Toast.makeText(CreateAccount.this, "Your account has been created", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(CreateAccount.this, "The password deasn't match", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateAccount.this, "The password doesn't match", Toast.LENGTH_SHORT).show();
                 }
             }
         });

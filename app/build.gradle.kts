@@ -38,6 +38,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.journeyapps:zxing-android-embedded:4.3.0")
     implementation("androidx.multidex:multidex:2.0.1")
+    implementation("sql")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
