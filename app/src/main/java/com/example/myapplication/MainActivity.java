@@ -10,6 +10,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
 public class MainActivity extends AppCompatActivity {
 
     Button btnSignIn;
@@ -26,6 +29,11 @@ public class MainActivity extends AppCompatActivity {
         btnForgotPass = findViewById(R.id.btn_forgot);
         edtUser = findViewById(R.id.edtxt_email);
         edtPass = findViewById(R.id.edtxt_pass);
+
+        String url = "http://192.168.100.28:80/greengo/add_user.php";
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
