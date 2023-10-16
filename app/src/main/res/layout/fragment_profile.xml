@@ -36,7 +36,6 @@
         android:id="@+id/txtName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enrique López"
         android:textColor="@color/black"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -46,10 +45,10 @@
         app:layout_constraintVertical_bias="0.051" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/txtPoints"
         android:layout_width="212dp"
         android:layout_height="33dp"
-        android:text="Puntos: 540"
+        android:text="Points: "
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -69,7 +68,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/txtPoints"
         app:layout_constraintVertical_bias="0.252" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
