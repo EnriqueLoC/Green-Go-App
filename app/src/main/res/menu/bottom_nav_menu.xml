@@ -12,7 +12,7 @@
     <item
         android:id="@+id/map_menu"
         android:title="Map"
-        android:icon="@drawable/map_menu_icon"/>
+        android:icon="@drawable/map_menu_icon2"/>
     <item
         android:id="@+id/settings"
         android:title="Settings"
