@@ -29,8 +29,8 @@ public class MenuActivity extends AppCompatActivity {
                 replaceFragment(new NewsFragment());
             } else if (item.getItemId() == R.id.profile) {
                 replaceFragment(new ProfileFragment());
-            } else if (item.getItemId() == R.id.feedback) {
-                replaceFragment(new FeedbackFragment());
+            } else if (item.getItemId() == R.id.map_menu) {
+                replaceFragment(new MapsFragment());
             } else if (item.getItemId() == R.id.settings) {
                 replaceFragment(new SettingsFragment());
             }

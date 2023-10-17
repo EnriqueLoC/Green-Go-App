@@ -10,9 +10,9 @@
         android:title="Profile"
         android:icon="@drawable/profile_menu_icon"/>
     <item
-        android:id="@+id/feedback"
-        android:title="Feedback"
-        android:icon="@drawable/feedback_menu_icon"/>
+        android:id="@+id/map_menu"
+        android:title="Map"
+        android:icon="@drawable/map_menu_icon"/>
     <item
         android:id="@+id/settings"
         android:title="Settings"
