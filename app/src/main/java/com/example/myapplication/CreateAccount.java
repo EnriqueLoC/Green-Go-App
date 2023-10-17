@@ -26,7 +26,7 @@ public class CreateAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
 
-        String url = "http://192.168.8.81:80/greengo/add_user.php";
+        String url = "http://192.168.100.28:80/greengo/add_user.php";
         RequestQueue queue = Volley.newRequestQueue(this);
 
         EditText edtName, edtLastName, edtEmail, edtPass, edtConfPass;
@@ -85,7 +85,17 @@ public class CreateAccount extends AppCompatActivity {
                 }
                 Intent intent = new Intent(CreateAccount.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        // Cuando se presiona el botón "Atrás", inicia MainActivity
+        super.onBackPressed();
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // Elimina las actividades de la parte superior
+        startActivity(intent);
+        finish(); // Cierra la actividad actual
     }
 }

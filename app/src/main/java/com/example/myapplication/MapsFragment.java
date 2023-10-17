@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +66,17 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
             mMap.setMyLocationEnabled(true);
             LatLng chihuahua = new LatLng(28.6674057, -106.0576012);
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(chihuahua, 11.75f));
+
+            try {
+                boolean success = mMap.setMapStyle(
+                        MapStyleOptions.loadRawResourceStyle(requireContext(), R.raw.map_style));
+
+                if (!success) {
+                    Log.e("MapsFragment", "Fallo al aplicar el estilo del mapa.");
+                }
+            } catch (Resources.NotFoundException e) {
+                Log.e("MapsFragment", "No se pudo encontrar el archivo de estilo. Error: ", e);
+            }
 
             BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.recycle);
             int width = 75; // Ancho deseado en píxeles

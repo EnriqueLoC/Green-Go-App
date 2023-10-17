@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 String password = edtPass.getText().toString();
                 Log.d("Credentials", "Email: " + email + " Password: " + password);
                 // Define la URL de tu API con los valores de email y contraseña
-                String url = "http://192.168.100.131:80/greengo/get_user.php?email=" + email + "&password=" + password;
+                String url = "http://192.168.100.28:80/greengo/get_user.php?email=" + email + "&password=" + password;
 
                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
 
@@ -85,6 +85,11 @@ public class MainActivity extends AppCompatActivity {
                                         intent.putExtra("apellido", apellido);
                                         intent.putExtra("puntos", puntos);
                                         startActivity(intent);
+                                        finish();
+                                    } else if(edtUser.getText().toString().equals("") && edtPass.getText().toString().equals("")){
+                                        Toast.makeText(MainActivity.this, "The fields are empty", Toast.LENGTH_SHORT).show();
+                                    } else if (edtUser.getText().toString().equals("") || edtPass.getText().toString().equals("")) {
+                                        Toast.makeText(MainActivity.this, "Fill both fields", Toast.LENGTH_SHORT).show();
                                     } else {
                                         Toast.makeText(getApplicationContext(), "Login failed. Invalid email or password.", Toast.LENGTH_SHORT).show();
                                     }
@@ -111,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, CreateAccount.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -119,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ForgottenPass.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
