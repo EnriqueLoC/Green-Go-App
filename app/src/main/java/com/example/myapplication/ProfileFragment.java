@@ -4,6 +4,10 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -48,16 +52,17 @@ public class ProfileFragment extends Fragment {
 
                     MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
 
-                    try{
+                    try {
+                        // Genera el código QR
+                        BitMatrix bitMatrix = multiFormatWriter.encode(ID, BarcodeFormat.QR_CODE, 500, 500);
 
-                        BitMatrix bitMatrix = multiFormatWriter.encode(ID, BarcodeFormat.QR_CODE, 200, 200);
-
+                        // Personalización del código QR
                         BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
                         Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
 
+                        // Muestra el código QR personalizado en imgQRCode
                         imgQRCode.setImageBitmap(bitmap);
-
-                    }catch(WriterException e){
+                    } catch (WriterException e) {
                         throw new RuntimeException(e);
                     }
                     txtNombre = rootView.findViewById(R.id.txtName);
