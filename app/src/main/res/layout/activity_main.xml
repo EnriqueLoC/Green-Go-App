@@ -48,7 +48,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/green"
         android:textColorHighlight="@color/black"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,60 +70,78 @@
             android:layout_height="match_parent"
             android:background="@color/white">
 
-            <EditText
-                android:id="@+id/edtxt_email"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/green"
-                android:drawableEnd="@drawable/email_icon"
-                android:drawableTint="@color/green"
-                android:ems="10"
-                android:hint="@string/email"
-                android:inputType="textEmailAddress"
-                android:minHeight="48dp"
-                android:textColor="@color/black"
+                app:boxStrokeColor="@color/green"
+                app:hintTextColor="@color/green"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.117"
-                tools:targetApi="s" />
+                app:passwordToggleDrawable="@drawable/email_icon">
 
-            <EditText
-                android:id="@+id/edtxt_pass"
+                <EditText
+                    android:id="@+id/edtxt_email"
+                    android:layout_width="300dp"
+                    android:layout_height="60dp"
+                    android:backgroundTint="@color/green"
+                    android:drawableEnd="@drawable/email_icon"
+                    android:drawableTint="@color/green"
+                    android:ems="10"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:minHeight="48dp"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/green"
-                android:drawableEnd="@drawable/lock_icon"
-                android:drawableTint="@color/green"
-                android:ems="10"
-                android:hint="@string/password"
-                android:inputType="textPassword"
-                android:minHeight="48dp"
-                android:textColor="@color/black"
+                app:boxStrokeColor="@color/green"
+                app:hintTextColor="@color/green"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edtxt_email"
-                app:layout_constraintVertical_bias="0.092" />
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
+                app:layout_constraintVertical_bias="0.092"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/green">
+
+                <EditText
+                    android:id="@+id/edtxt_pass"
+                    android:layout_width="300dp"
+                    android:layout_height="60dp"
+                    android:backgroundTint="@color/green"
+                    android:drawableEnd="@drawable/lock_icon"
+                    android:drawableTint="@color/green"
+                    android:ems="10"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:pointerIcon="none"
+                    android:textColor="@color/black" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/btn_forgot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:clickable="true"
                 android:text="forgot your password?"
                 android:textColor="@color/green"
                 android:textStyle="bold"
-                android:clickable="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.373"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edtxt_pass"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+                app:layout_constraintVertical_bias="0.066" />
 
             <Button
                 android:id="@+id/btn_signin"

@@ -80,12 +80,12 @@ public class CreateAccount extends AppCompatActivity {
 
                     queue.add(postRequest);
                     Toast.makeText(CreateAccount.this, "Your account has been created", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(CreateAccount.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 } else {
                     Toast.makeText(CreateAccount.this, "The password doesn't match", Toast.LENGTH_SHORT).show();
                 }
-                Intent intent = new Intent(CreateAccount.this, MainActivity.class);
-                startActivity(intent);
-                finish();
             }
         });
     }
@@ -97,5 +97,6 @@ public class CreateAccount extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // Elimina las actividades de la parte superior
         startActivity(intent);
         finish(); // Cierra la actividad actual
+        overridePendingTransition(R.anim.anim_slide_left_in, R.anim.anim_slide_left_out); // Aplica la animación
     }
 }

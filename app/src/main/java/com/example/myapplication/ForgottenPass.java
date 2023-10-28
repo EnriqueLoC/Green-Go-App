@@ -20,5 +20,6 @@ public class ForgottenPass extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // Elimina las actividades de la parte superior
         startActivity(intent);
         finish(); // Cierra la actividad actual
+        overridePendingTransition(R.anim.anim_slide_right_in, R.anim.anim_slide_right_out); // Aplica la animación
     }
 }

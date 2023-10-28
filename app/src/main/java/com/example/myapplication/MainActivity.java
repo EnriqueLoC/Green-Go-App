@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     TextView btnCreateAcc, btnForgotPass;
     EditText edtUser, edtPass;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +39,24 @@ public class MainActivity extends AppCompatActivity {
         btnForgotPass = findViewById(R.id.btn_forgot);
         edtUser = findViewById(R.id.edtxt_email);
         edtPass = findViewById(R.id.edtxt_pass);
+
+        /*final boolean[] passwordVisible = {false};
+
+        edtPass.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                if (event.getRawX() >= (edtPass.getRight() - edtPass.getCompoundDrawables()[2].getBounds().width())) {
+                    if (passwordVisible[0]) {
+                        edtPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        passwordVisible[0] = false;
+                    } else {
+                        edtPass.setInputType(InputType.TYPE_CLASS_TEXT);
+                        passwordVisible[0] = true;
+                    }
+                    return true;
+                }
+            }
+            return false;
+        });*/
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, CreateAccount.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.anim_slide_right_in, R.anim.anim_slide_right_out);
                 finish();
             }
         });
@@ -125,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ForgottenPass.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.anim_slide_left_in, R.anim.anim_slide_left_out);
                 finish();
             }
         });
