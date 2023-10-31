@@ -6,32 +6,60 @@
     android:layout_height="match_parent"
     tools:context=".ForgottenPass">
 
-    <EditText
-        android:id="@+id/edtEmailAdd"
-        android:layout_width="289dp"
-        android:layout_height="68dp"
-        android:layout_marginTop="12dp"
-        android:backgroundTint="@color/green"
-        android:drawableEnd="@drawable/email_icon"
-        android:drawableTint="@color/green"
-        android:ems="10"
-        android:hint="write your email address"
-        android:inputType="textEmailAddress"
-        android:textAlignment="center"
-        android:textColor="@color/black"
+    <com.scwang.wave.MultiWaveHeader
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:scaleY="-1"
+        app:mwhVelocity="2"
+        app:mwhProgress="1"
+        app:mwhIsRunning="true"
+        app:mwhGradientAngle="45"
+        app:mwhWaveHeight="50dp"
+        app:mwhColorAlpha="0.45"
+        app:mwhStartColor="#008700"
+        app:mwhCloseColor="#008700"
+        app:mwhWaves="MultiWave"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.02" />
+        app:layout_constraintVertical_bias="0.037">
+
+        <EditText
+            android:id="@+id/edtEmailAdd"
+            android:layout_width="289dp"
+            android:layout_height="68dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/green"
+            android:drawableEnd="@drawable/email_icon"
+            android:drawableTint="@color/green"
+            android:ems="10"
+            android:hint="write your email address"
+            android:inputType="textEmailAddress"
+            android:textAlignment="center"
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="210dp"
         android:layout_height="63dp"
-        android:text="Don't remember your password?"
+        android:text="Let's recover it!"
+        android:gravity="center"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/green"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,18 +67,18 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.284" />
+        app:layout_constraintVertical_bias="0.387" />
 
     <Button
         android:id="@+id/btnSend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
         android:text="SEND EMAIL"
-        android:backgroundTint="@color/green"
-        android:textColor="@color/white"
+        android:textColor="@color/green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtEmailAdd"
-        app:layout_constraintVertical_bias="0.131" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout5"
+        app:layout_constraintVertical_bias="0.763" />
 </androidx.constraintlayout.widget.ConstraintLayout>
