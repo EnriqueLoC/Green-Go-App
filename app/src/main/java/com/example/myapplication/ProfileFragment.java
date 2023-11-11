@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.StringRequest;
 import com.example.myapplication.R;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -34,7 +35,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
-        TextView txtNombre, txtPuntos;
+        TextView txtNombre, txtEmail, txtPuntos;
         Activity menuActivity = getActivity();
 
         if (menuActivity != null) {
@@ -44,6 +45,7 @@ public class ProfileFragment extends Fragment {
                 int id = intent.getIntExtra("id", -1);
                 String nombre = intent.getStringExtra("nombre");
                 String apellido = intent.getStringExtra("apellido");
+                String email = intent.getStringExtra("email");
                 int puntos = intent.getIntExtra("puntos", -1);
                 if (id != -1){
                     ImageView imgQRCode = rootView.findViewById(R.id.qr_code);
@@ -66,9 +68,11 @@ public class ProfileFragment extends Fragment {
                         throw new RuntimeException(e);
                     }
                     txtNombre = rootView.findViewById(R.id.txtName);
+                    txtEmail = rootView.findViewById(R.id.txtEmail);
                     txtPuntos = rootView.findViewById(R.id.txtPoints);
 
                     txtNombre.setText(nombre+" "+apellido);
+                    txtEmail.setText(email);
                     txtPuntos.setText("Points: "+puntos);
                 }
                 }

@@ -1,0 +1,14 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Fondo de degradado -->
+    <item>
+        <shape>
+            <gradient
+                android:startColor="@color/dark_green"
+                android:endColor="@color/green"
+                android:angle="0"/>
+        </shape>
+    </item>
+    <!-- Vector drawable -->
+    <item
+        android:drawable="@drawable/wave1"/>
+</layer-list>

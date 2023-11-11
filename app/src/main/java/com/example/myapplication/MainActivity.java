@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
                                     int id = -1;
                                     String nombre = "null";
                                     String apellido= "null";
+                                    String email="null";
                                     int puntos = -1;
 
                                     boolean found = false;
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                                         id = jsonObject.getInt("id_usuario");
                                         nombre = jsonObject.getString("nombre");
                                         apellido = jsonObject.getString("apellido");
-                                        String email = jsonObject.getString("email");
+                                        email = jsonObject.getString("email");
                                         String password = jsonObject.getString("password");
                                         puntos = jsonObject.getInt("puntos");
                                         // Verifica si las credenciales coinciden
@@ -104,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
                                         intent.putExtra("id",id);
                                         intent.putExtra("nombre", nombre);
                                         intent.putExtra("apellido", apellido);
+                                        intent.putExtra("email", email);
                                         intent.putExtra("puntos", puntos);
                                         startActivity(intent);
                                         finish();
