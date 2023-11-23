@@ -40,24 +40,6 @@ public class MainActivity extends AppCompatActivity {
         edtUser = findViewById(R.id.edtxt_email);
         edtPass = findViewById(R.id.edtxt_pass);
 
-        /*final boolean[] passwordVisible = {false};
-
-        edtPass.setOnTouchListener((v, event) -> {
-            if (event.getAction() == MotionEvent.ACTION_UP) {
-                if (event.getRawX() >= (edtPass.getRight() - edtPass.getCompoundDrawables()[2].getBounds().width())) {
-                    if (passwordVisible[0]) {
-                        edtPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                        passwordVisible[0] = false;
-                    } else {
-                        edtPass.setInputType(InputType.TYPE_CLASS_TEXT);
-                        passwordVisible[0] = true;
-                    }
-                    return true;
-                }
-            }
-            return false;
-        });*/
-
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

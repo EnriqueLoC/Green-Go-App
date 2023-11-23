@@ -6,19 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".CreateAccount">
 
-    <!--<RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="@drawable/wave2"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="@drawable/wave1"
-        app:layout_constraintBottom_toBottomOf="parent" />-->
-
     <com.scwang.wave.MultiWaveHeader
         android:layout_width="match_parent"
         android:layout_height="220dp"
