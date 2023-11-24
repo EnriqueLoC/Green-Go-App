@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 String password = edtPass.getText().toString();
                 Log.d("Credentials", "Email: " + email + " Password: " + password);
                 // Define la URL de tu API con los valores de email y contraseña
-                String url = "http://192.168.100.28:80/greengo/get_user.php?email=" + email + "&password=" + password;
+                String url = "http://192.168.100.28:80/greengo2/get_user.php?mail=" + email + "&passw=" + password;
 
                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
 
@@ -69,12 +69,12 @@ public class MainActivity extends AppCompatActivity {
                                     for (int i = 0; i < jsonArray.length(); i++) {
                                         JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                                        id = jsonObject.getInt("id_usuario");
-                                        nombre = jsonObject.getString("nombre");
-                                        apellido = jsonObject.getString("apellido");
-                                        email = jsonObject.getString("email");
-                                        String password = jsonObject.getString("password");
-                                        puntos = jsonObject.getInt("puntos");
+                                        id = jsonObject.getInt("id_user");
+                                        nombre = jsonObject.getString("name");
+                                        apellido = jsonObject.getString("last_name");
+                                        email = jsonObject.getString("mail");
+                                        String password = jsonObject.getString("passw");
+                                        puntos = jsonObject.getInt("user_points");
                                         // Verifica si las credenciales coinciden
                                         if (email.equals(edtUser.getText().toString()) && password.equals(edtPass.getText().toString())) {
                                             found = true;

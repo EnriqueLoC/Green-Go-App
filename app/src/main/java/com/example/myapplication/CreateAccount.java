@@ -26,7 +26,7 @@ public class CreateAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
 
-        String url = "http://192.168.100.28:80/greengo/add_user.php";
+        String url = "http://192.168.100.28:80/greengo2/add_user.php";
         RequestQueue queue = Volley.newRequestQueue(this);
 
         EditText edtName, edtLastName, edtEmail, edtPass, edtConfPass;
@@ -60,11 +60,11 @@ public class CreateAccount extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 // Define los parámetros que deseas enviar en la solicitud POST
                 Map<String, String> params = new HashMap<>();
-                params.put("nombre", edtName.getText().toString());
-                params.put("apellido", edtLastName.getText().toString());
-                params.put("email", edtEmail.getText().toString());
-                params.put("password", edtPass.getText().toString());
-                params.put("puntos", "0");
+                params.put("name", edtName.getText().toString());
+                params.put("last_name", edtLastName.getText().toString());
+                params.put("mail", edtEmail.getText().toString());
+                params.put("passw", edtPass.getText().toString());
+                params.put("user_points", "0");
                 return params;
             }
         };
