@@ -26,7 +26,7 @@ public class CreateAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
 
-        String url = "http://192.168.100.28:80/greengo2/add_user.php";
+        String url = "http://10.2.218.135:80/greengo/add_user.php";
         RequestQueue queue = Volley.newRequestQueue(this);
 
         EditText edtName, edtLastName, edtEmail, edtPass, edtConfPass;
