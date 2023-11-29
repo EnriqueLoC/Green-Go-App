@@ -3,8 +3,8 @@
 
     <item
         android:id="@+id/news"
-        android:title="News"
-        android:icon="@drawable/news_menu_icon"/>
+        android:title="Coupons"
+        android:icon="@drawable/discount_menu_icon"/>
     <item
         android:id="@+id/profile"
         android:title="Profile"
