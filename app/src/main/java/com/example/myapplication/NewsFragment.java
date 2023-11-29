@@ -25,9 +25,9 @@ public class NewsFragment extends Fragment {
         recyclerView = rootView.findViewById(R.id.recycler_view);
 
         integerArrayList = new ArrayList<>();
-        integerArrayList.add(R.drawable.alsuperdiscount);
-        integerArrayList.add(R.drawable.oxxodiscount);
-        integerArrayList.add(R.drawable.samsdiscount);
+        integerArrayList.add(R.drawable.coupon_alsuper);
+        integerArrayList.add(R.drawable.coupon_oxxo);
+        integerArrayList.add(R.drawable.coupon_sams);
 
 
         recyclerViewAdapter = new RecyclerViewAdapter(getContext(), integerArrayList);

@@ -40,9 +40,8 @@
             android:id="@+id/imagePicture"
             android:layout_width="110dp"
             android:layout_height="110dp"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/profile_menu_icon"
-            app:tint="@color/green" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/lilalan" />
     </androidx.cardview.widget.CardView>
 
     <TextView
