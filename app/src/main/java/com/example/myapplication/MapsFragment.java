@@ -23,11 +23,51 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.sql.DatabaseMetaData;
 
 public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private Marker OtherDeviceMarker;
+    private DatabaseReference locationRef;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        locationRef = FirebaseDatabase.getInstance().getReference().child("ubicaciones");
+
+        locationRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // Obtener la ubicación actualizada del otro dispositivo
+                Double lat = snapshot.child("latitude").getValue(Double.class);
+                Double lng = snapshot.child("longitude").getValue(Double.class);
+                if (lat != null && lng != null) {
+                    LatLng newLocation = new LatLng(lat, lng);
+                    // Actualizar la posición del marcador del otro dispositivo en el mapa
+                    if (OtherDeviceMarker != null) {
+                        OtherDeviceMarker.setPosition(newLocation);
+                    } else {
+                        OtherDeviceMarker = mMap.addMarker(new MarkerOptions()
+                                .position(newLocation)
+                                .title("Ubicación del otro dispositivo"));
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("MapsFragment", "Error al recibir la ubicación: " + error.getMessage());
+            }
+        });
+    }
 
     Object[][] recycleCenters = new Object[][]{
             {"Recicladora de Papel S.A. de C.V.", 28.652667679251763, -106.06601643311855, 1},
@@ -66,6 +106,11 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
             mMap.setMyLocationEnabled(true);
             LatLng chihuahua = new LatLng(28.6674057, -106.0576012);
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(chihuahua, 11.75f));
+
+            // Agregar marcador para la ubicación del otro dispositivo
+            OtherDeviceMarker = mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(0, 0)) // Latitud y longitud inicializadas en 0
+                    .title("Ubicación del otro dispositivo"));
 
             try {
                 boolean success = mMap.setMapStyle(
