@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -43,6 +44,7 @@ dependencies {
     implementation("com.google.android.gms:play-services-maps:18.1.0")
     implementation("com.github.bumptech.glide:glide:4.14.2")
     implementation("com.scwang.wave:MultiWaveHeader:1.0.0-andx")
+    implementation("com.google.firebase:firebase-database:21.0.0")
 
     annotationProcessor("com.github.bumptech.glide:compiler:4.14.2")
 
