@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "575193134641",
+    "project_id": "locationtracking-422723",
+    "storage_bucket": "locationtracking-422723.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:575193134641:android:704c13005785315e068710",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQXJXcfRh1l4zQcx8h2yBF9X3fwdzWl-c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
