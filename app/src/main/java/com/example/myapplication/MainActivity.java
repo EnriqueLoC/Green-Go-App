@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 String password = edtPass.getText().toString();
                 Log.d("Credentials", "Email: " + email + " Password: " + password);
                 // Define la URL de tu API con los valores de email y contraseña
-                String url = "http://192.168.100.28:80/greengo/get_user.php?mail=" + email + "&passw=" + password;
+                String url = "http://192.168.100.246:80/greengo/get_user.php?mail=" + email + "&passw=" + password;
 
                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
 

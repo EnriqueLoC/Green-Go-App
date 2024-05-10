@@ -4,7 +4,9 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -44,21 +46,39 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         super.onCreate(savedInstanceState);
         locationRef = FirebaseDatabase.getInstance().getReference().child("ubicaciones");
 
-        locationRef.addValueEventListener(new ValueEventListener() {
+        locationRef.orderByKey().limitToLast(1).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 // Obtener la ubicación actualizada del otro dispositivo
-                Double lat = snapshot.child("latitude").getValue(Double.class);
-                Double lng = snapshot.child("longitude").getValue(Double.class);
-                if (lat != null && lng != null) {
-                    LatLng newLocation = new LatLng(lat, lng);
-                    // Actualizar la posición del marcador del otro dispositivo en el mapa
-                    if (OtherDeviceMarker != null) {
-                        OtherDeviceMarker.setPosition(newLocation);
-                    } else {
-                        OtherDeviceMarker = mMap.addMarker(new MarkerOptions()
-                                .position(newLocation)
-                                .title("Ubicación del otro dispositivo"));
+                for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                    String locationString = childSnapshot.getValue(String.class);
+                    if (locationString != null && !locationString.isEmpty()) {
+                        String[] coordinates = locationString.split(", ");
+                        if (coordinates.length == 2) {
+                            try {
+                                Double lat = Double.parseDouble(coordinates[0]);
+                                Double lng = Double.parseDouble(coordinates[1]);
+                                if (lat != null && lng != null) {
+                                    LatLng newLocation = new LatLng(lat, lng);
+                                    // Actualizar la posición del marcador del otro dispositivo en el mapa
+                                    try {
+                                        if (OtherDeviceMarker != null) {
+                                            OtherDeviceMarker.setPosition(newLocation);
+                                        } else {
+                                            OtherDeviceMarker = mMap.addMarker(new MarkerOptions()
+                                                    .position(newLocation)
+                                                    .title("Ubicación del otro dispositivo"));
+                                        }
+                                    }catch (Exception e){
+                                        Log.e("MapsFragment", "Error al actualizar marcador");
+                                    }
+                                }
+                            } catch (NumberFormatException e) {
+                                Log.e("MapsFragment", "Error al convertir coordenadas: " + e.getMessage());
+                            }
+                        } else {
+                            Log.e("MapsFragment", "Formato de coordenadas incorrecto: " + locationString);
+                        }
                     }
                 }
             }
@@ -93,7 +113,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
 
 
@@ -108,10 +128,25 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
             LatLng chihuahua = new LatLng(28.6674057, -106.0576012);
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(chihuahua, 11.75f));
 
-            // Agregar marcador para la ubicación del otro dispositivo
+            Drawable drawable = getResources().getDrawable(R.drawable.trash_truck);
+
+// Convert the VectorDrawable to a Bitmap
+            Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmap);
+            drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+            drawable.draw(canvas);
+
+// Scale down the Bitmap
+            Bitmap smallMarkerBuses = Bitmap.createScaledBitmap(bitmap, 75, 75, false);
+
+// Create a BitmapDescriptor from the scaled Bitmap
+            BitmapDescriptor iconBuses = BitmapDescriptorFactory.fromBitmap(smallMarkerBuses);
+
+// Add the marker with the scaled icon
             OtherDeviceMarker = mMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(0, 0)) // Latitud y longitud inicializadas en 0
-                    .title("Ubicación del otro dispositivo"));
+                    .position(new LatLng(0, 0)) // Initialize latitude and longitude to 0
+                    .title("Ubicación del otro dispositivo")
+                    .icon(iconBuses));
 
             try {
                 boolean success = mMap.setMapStyle(
@@ -124,12 +159,12 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                 Log.e("MapsFragment", "No se pudo encontrar el archivo de estilo. Error: ", e);
             }
 
-            BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.recycle);
+            BitmapDescriptor iconCenters = BitmapDescriptorFactory.fromResource(R.drawable.recycle);
             int width = 75; // Ancho deseado en píxeles
             int height = 75; // Alto deseado en píxeles
-            Bitmap bitmap = ((BitmapDrawable) getResources().getDrawable(R.drawable.recycle)).getBitmap();
-            Bitmap smallMarker = Bitmap.createScaledBitmap(bitmap, width, height, false);
-            icon = BitmapDescriptorFactory.fromBitmap(smallMarker);
+            Bitmap bitmapCenters = ((BitmapDrawable) getResources().getDrawable(R.drawable.recycle)).getBitmap();
+            Bitmap smallMarkerCenters = Bitmap.createScaledBitmap(bitmapCenters, width, height, false);
+            iconCenters = BitmapDescriptorFactory.fromBitmap(smallMarkerCenters);
 
             for (int i = 0; i < recycleCenters.length; i++) {
                 String centerName = (String) recycleCenters[i][0];
@@ -137,7 +172,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                 double longitude = (double) recycleCenters[i][2];
 
                 LatLng centersLocation = new LatLng(latitude, longitude);
-                mMap.addMarker(new MarkerOptions().position(centersLocation).title(centerName).icon(icon));
+                mMap.addMarker(new MarkerOptions().position(centersLocation).title(centerName).icon(iconCenters));
             }
         }
     }
